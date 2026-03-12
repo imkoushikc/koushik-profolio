@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // ── DATA ────────────────────────────────────────────────────────────────────
 const DATA = {
@@ -403,7 +403,7 @@ function About() {
   return (
     <Section id="about">
       <SectionTitle>About Me</SectionTitle>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 48 }}>
         <div>
           <p style={{ color: "#94a3b8", lineHeight: 1.8, fontSize: 16, marginBottom: 20 }}>
             I'm a <span style={{ color: "#60a5fa", fontWeight: 600 }}>Full-Stack Developer</span> based in Singapore with 7+ years of experience building high-performance web and mobile applications for multinational companies and government projects.
@@ -478,24 +478,31 @@ function Skills() {
 // ── EXPERIENCE ───────────────────────────────────────────────────────────────
 function Experience() {
   const [active, setActive] = useState(0);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
     <Section id="experience">
       <SectionTitle>Work Experience</SectionTitle>
-      <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 40 }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "220px 1fr", gap: isMobile ? 24 : 40 }}>
         {/* Tabs */}
-        <div style={{ borderLeft: "2px solid rgba(59,130,246,0.2)" }}>
+        <div style={{ borderLeft: isMobile ? "none" : "2px solid rgba(59,130,246,0.2)", display: "flex", flexDirection: isMobile ? "row" : "column", overflowX: isMobile ? "auto" : "visible", gap: isMobile ? 8 : 0, paddingBottom: isMobile ? 8 : 0 }}>
           {DATA.experience.map((exp, i) => (
             <button key={i} onClick={() => setActive(i)} style={{
-              display: "block", width: "100%", textAlign: "left",
-              padding: "14px 20px", background: "none", border: "none", cursor: "pointer",
-              borderLeft: i === active ? "2px solid #3b82f6" : "2px solid transparent",
-              marginLeft: -2,
+              display: "block", width: isMobile ? "auto" : "100%", textAlign: "left",
+              padding: isMobile ? "10px 16px" : "14px 20px",
+              background: isMobile && i === active ? "rgba(59,130,246,0.1)" : "none",
+              border: isMobile ? (i === active ? "1px solid #3b82f6" : "1px solid rgba(59,130,246,0.2)") : "none",
+              borderRadius: isMobile ? 6 : 0,
+              cursor: "pointer",
+              borderLeft: isMobile ? "none" : (i === active ? "2px solid #3b82f6" : "2px solid transparent"),
+              marginLeft: isMobile ? 0 : -2,
               color: i === active ? "#60a5fa" : "#64748b",
               fontFamily: "'DM Mono',monospace", fontSize: 13,
               transition: "all 0.2s", lineHeight: 1.4,
+              whiteSpace: isMobile ? "nowrap" : "normal",
+              flexShrink: isMobile ? 0 : 1,
             }}>
-              {exp.company.split(" ")[0]}<br />
-              <span style={{ fontSize: 11, opacity: 0.7 }}>{exp.period.split("–")[0].trim()}</span>
+              {exp.company.split(" ")[0]}{!isMobile && <React.Fragment><br />
+              <span style={{ fontSize: 11, opacity: 0.7 }}>{exp.period.split("–")[0].trim()}</span></React.Fragment>}
             </button>
           ))}
         </div>
