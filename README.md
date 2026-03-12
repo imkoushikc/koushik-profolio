@@ -29,6 +29,8 @@ npm run deploy
 
 This project auto-deploys to GitHub Pages via GitHub Actions on every push to `main`.
 
+Live site: https://imkoushikc.github.io/koushik-profolio/
+
 Manual deploy:
 ```bash
 npm run deploy
