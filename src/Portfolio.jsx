@@ -6,7 +6,7 @@ const DATA = {
   title: ["Full-Stack Developer", "React Specialist", "Senior Engineer", "UI Architect"],
   summary:
     "Senior Software Engineer with 7+ years of experience leading complex development initiatives. Passionate about crafting efficient, user-centric applications and tackling impactful technology challenges.",
-  email: "hello@koushikc.com",
+  email: "imkoushikc@gmail.com",
   phone: "+65 86521236",
   location: "Singapore",
   linkedin: "https://linkedin.com/in/koushikch/",
