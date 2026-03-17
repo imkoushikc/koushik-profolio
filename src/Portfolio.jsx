@@ -418,7 +418,7 @@ function About() {
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {[
             ["📍", "Location", "Singapore"],
-            ["🎓", "Education", "B.Sc. Computer Science, JNTU Hyderabad"],
+            ["🎓", "Education", "B.Tech. Computer Science, JNTU Hyderabad"],
             ["📧", "Email", DATA.email],
             ["🏆", "Certifications", "Flutter (Simplilearn), Generative AI (LinkedIn)"],
           ].map(([icon, label, val]) => (
